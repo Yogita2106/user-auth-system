@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-mode">
+    <section id="auth-section" class="auth-container">
+        <div class="auth-card">
+            <i data-lucide="shield-check" class="auth-logo"></i>
+            <h1>TaskMaster <span>Pro</span></h1>
+            <div class="form-wrapper">
+                <input type="email" id="email" placeholder="Email Address">
+                <input type="password" id="password" placeholder="Password">
+                <div class="auth-btns">
+                    <button onclick="login()" class="btn-primary">Sign In</button>
+                    <button onclick="register()" class="btn-outline">Register</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dashboard-section" class="app-container" style="display: none;">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i data-lucide="zap"></i> <span>TO-DO List</span>
+            </div>
+            <nav>
+                <div class="nav-item active" onclick="switchTab('dashboard', this)"><i data-lucide="layout"></i> Dashboard</div>
+                <div class="nav-item" onclick="switchTab('tasks', this)"><i data-lucide="list"></i> Tasks List</div>
+                <div class="nav-item" onclick="switchTab('settings', this)"><i data-lucide="settings"></i> Settings</div>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="nav-item theme-btn" onclick="toggleTheme()"><i data-lucide="moon"></i> Dark Mode</button>
+                <button onclick="logout()" class="logout-btn"><i data-lucide="log-out"></i> Logout</button>
+            </div>
+        </aside>
+
+        <main class="content-area">
+            <div id="view-dashboard" class="tab-view">
+                <h1>Hello, <span id="user-display">User</span>!</h1>
+                <div class="card">
+                    <h3>Quick Create</h3>
+                    <div class="input-box">
+                        <input type="text" id="task-title" placeholder="What needs to be done?">
+                        <button onclick="createTask()"><i data-lucide="plus"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="view-tasks" class="tab-view" style="display: none;">
+                <div class="header-flex">
+                    <h1>My Tasks</h1>
+                    <span class="badge" id="task-count">0</span>
+                </div>
+                <ul id="task-list" class="task-items"></ul>
+            </div>
+
+            <div id="view-settings" class="tab-view" style="display: none;">
+                <h1>Settings</h1>
+                <div class="card">
+                    <label>Change Display Name</label>
+                    <input type="text" id="new-name" placeholder="Enter new name...">
+                    <button class="btn-primary" onclick="updateName()" style="margin-top: 15px;">Update</button>
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

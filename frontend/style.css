@@ -1,0 +1,48 @@
+:root {
+    --primary: #6366f1;
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #1e293b;
+    --side: #0f172a;
+    --border: #e2e8f0;
+}
+
+.dark-mode {
+    --bg: #0b0f1a;
+    --card: #1e293b;
+    --text: #f1f5f9;
+    --side: #020617;
+    --border: #334155;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
+body { background: var(--bg); color: var(--text); transition: 0.3s; }
+
+/* Auth Styling */
+.auth-container { height: 100vh; display: flex; align-items: center; justify-content: center; background: #eef2ff; }
+.auth-card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; width: 350px; }
+.auth-logo { color: var(--primary); width: 50px; height: 50px; margin-bottom: 15px; }
+.auth-card h1 span { color: var(--primary); }
+.form-wrapper input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 10px; }
+
+/* Dashboard Layout */
+.app-container { display: flex; height: 100vh; }
+.sidebar { width: 260px; background: var(--side); color: white; padding: 30px 20px; display: flex; flex-direction: column; }
+.sidebar-header { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 700; margin-bottom: 40px; }
+.nav-item { padding: 12px; border-radius: 10px; cursor: pointer; display: flex; gap: 10px; color: #94a3b8; transition: 0.3s; margin-bottom: 5px; }
+.nav-item.active, .nav-item:hover { background: rgba(255,255,255,0.1); color: white; }
+.sidebar-footer { margin-top: auto; }
+
+.content-area { flex: 1; padding: 40px; overflow-y: auto; }
+.card { background: var(--card); padding: 25px; border-radius: 15px; border: 1px solid var(--border); margin-top: 20px; }
+.input-box { display: flex; gap: 10px; margin-top: 15px; }
+.input-box input { flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--text); }
+.input-box button, .btn-primary { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; }
+
+/* Task Items */
+.task-items li { display: flex; justify-content: space-between; padding: 15px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; }
+.task-actions button { background: none; border: none; cursor: pointer; margin-left: 10px; }
+.edit-icon { color: var(--primary); }
+.del-icon { color: #f87171; }
+.badge { background: var(--primary); color: white; padding: 4px 12px; border-radius: 20px; font-size: 14px; }
+.header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
