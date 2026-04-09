@@ -1,48 +1,130 @@
+/* --- Variables & Themes --- */
 :root {
     --primary: #6366f1;
+    --primary-dark: #4f46e5;
     --bg: #f8fafc;
     --card: #ffffff;
     --text: #1e293b;
+    --text-muted: #64748b;
     --side: #0f172a;
     --border: #e2e8f0;
+    --radius: 12px;
 }
 
 .dark-mode {
     --bg: #0b0f1a;
     --card: #1e293b;
     --text: #f1f5f9;
+    --text-muted: #94a3b8;
     --side: #020617;
     --border: #334155;
 }
 
+/* --- Global Reset --- */
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-body { background: var(--bg); color: var(--text); transition: 0.3s; }
+body { background: var(--bg); color: var(--text); transition: 0.3s; overflow-x: hidden; }
 
-/* Auth Styling */
+/* --- Auth Styling --- */
 .auth-container { height: 100vh; display: flex; align-items: center; justify-content: center; background: #eef2ff; }
-.auth-card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); text-align: center; width: 350px; }
-.auth-logo { color: var(--primary); width: 50px; height: 50px; margin-bottom: 15px; }
+.auth-card { background: white; padding: 40px; border-radius: 24px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); text-align: center; width: 380px; }
+.auth-logo { color: var(--primary); width: 48px; height: 48px; margin-bottom: 10px; }
 .auth-card h1 span { color: var(--primary); }
-.form-wrapper input { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 10px; }
 
-/* Dashboard Layout */
+.form-wrapper input { 
+    width: 100%; padding: 14px; margin: 12px 0; border: 1px solid var(--border); 
+    border-radius: var(--radius); outline: none; transition: 0.2s; 
+}
+.form-wrapper input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(99,102,241,0.1); }
+
+/* Auth Buttons Symmetrical Style */
+.auth-btns { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+.btn-primary { 
+    background: var(--primary); color: white; border: none; padding: 14px; 
+    border-radius: var(--radius); cursor: pointer; font-weight: 600; 
+    font-size: 15px; transition: 0.3s; 
+}
+.btn-primary:hover { background: var(--primary-dark); transform: translateY(-2px); }
+
+/* --- Dashboard Layout --- */
 .app-container { display: flex; height: 100vh; }
 .sidebar { width: 260px; background: var(--side); color: white; padding: 30px 20px; display: flex; flex-direction: column; }
 .sidebar-header { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 700; margin-bottom: 40px; }
-.nav-item { padding: 12px; border-radius: 10px; cursor: pointer; display: flex; gap: 10px; color: #94a3b8; transition: 0.3s; margin-bottom: 5px; }
+
+.nav-item { padding: 12px; border-radius: 10px; cursor: pointer; display: flex; gap: 10px; color: #94a3b8; transition: 0.3s; margin-bottom: 5px; align-items: center; }
 .nav-item.active, .nav-item:hover { background: rgba(255,255,255,0.1); color: white; }
 .sidebar-footer { margin-top: auto; }
 
-.content-area { flex: 1; padding: 40px; overflow-y: auto; }
-.card { background: var(--card); padding: 25px; border-radius: 15px; border: 1px solid var(--border); margin-top: 20px; }
-.input-box { display: flex; gap: 10px; margin-top: 15px; }
-.input-box input { flex: 1; padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--text); }
-.input-box button, .btn-primary { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; }
+.logout-btn { 
+    background: transparent; border: none; color: #f87171; cursor: pointer; 
+    margin-top: 10px; font-weight: 600; display: flex; gap: 10px; padding: 12px; 
+}
 
-/* Task Items */
-.task-items li { display: flex; justify-content: space-between; padding: 15px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; }
+/* --- Content Area --- */
+.content-area { flex: 1; padding: 40px; overflow-y: auto; }
+.card { background: var(--card); padding: 25px; border-radius: 20px; border: 1px solid var(--border); margin-top: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+h1 { font-size: 28px; font-weight: 700; }
+
+.input-box { display: flex; gap: 10px; margin-top: 15px; }
+.input-box input { 
+    flex: 1; padding: 14px; border-radius: var(--radius); 
+    border: 1px solid var(--border); background: var(--bg); color: var(--text); 
+}
+.input-box button { background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: var(--radius); cursor: pointer; }
+
+/* --- Settings Page Specific Fix (Modern UI) --- */
+.settings-row {
+    display: flex;
+    align-items: stretch; /* Isse input aur button ki height ek jaisi rahegi */
+    gap: 15px;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+.settings-row input {
+    flex: 1;
+    margin: 0 !important;
+    padding: 14px 18px !important; /* Thoda bold aur clean look ke liye padding badhayi */
+    border: 2px solid var(--border); /* Border thoda solid kiya */
+    border-radius: var(--radius);
+    background: var(--bg);
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.settings-row input:focus {
+    border-color: var(--primary);
+    background: var(--card);
+}
+
+.update-btn {
+    padding: 0 30px !important; /* Button ko side se space di */
+    white-space: nowrap;
+    margin: 0 !important;
+    border-radius: var(--radius) !important;
+    font-weight: 700 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.2);
+}
+
+/* --- Task Items --- */
+.task-items { list-style: none; margin-top: 20px; }
+.task-items li { 
+    display: flex; justify-content: space-between; padding: 18px; 
+    background: var(--card); border: 1px solid var(--border); 
+    border-radius: 16px; margin-bottom: 12px; transition: 0.2s; align-items: center;
+}
+.task-items li:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+
 .task-actions button { background: none; border: none; cursor: pointer; margin-left: 10px; }
 .edit-icon { color: var(--primary); }
 .del-icon { color: #f87171; }
-.badge { background: var(--primary); color: white; padding: 4px 12px; border-radius: 20px; font-size: 14px; }
+
+.badge { background: var(--primary); color: white; padding: 4px 12px; border-radius: 20px; font-size: 14px; font-weight: 600; }
 .header-flex { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+
+/* Theme Toggle Button */
+.theme-btn { width: 100%; border: 1px solid rgba(255,255,255,0.1); margin-bottom: 10px; }

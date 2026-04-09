@@ -22,18 +22,55 @@ function toggleTheme() {
 }
 
 // Auth Functions
-async function register() {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const res = await fetch(`${API_URL}/auth/register`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: email.split('@')[0], email, password })
-    });
-    const data = await res.json();
-    alert(data.message || "Account Created!");
-}
+// async function register() {
+//     const email = document.getElementById('email').value;
+//     const password = document.getElementById('password').value;
+//     const res = await fetch(`${API_URL}/auth/register`, {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({ username: email.split('@')[0], email, password })
+//     });
+//     const data = await res.json();
+//     alert(data.message || "Account Created!");
+// }
 
+
+async function register() {
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+
+    // 🛑 Validation Check
+    if (!email || !password) {
+        alert("Please Fill Up the credentials!");
+        return; // Yahan se function ruk jayega
+    }
+
+    if (password.length < 6) {
+        alert("Password length must be 6 characters!");
+        return;
+    }
+
+    try {
+        const res = await fetch(`${API_URL}/auth/register`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                username: email.split('@')[0], 
+                email: email, 
+                password: password 
+            })
+        });
+        const data = await res.json();
+        
+        if (res.ok) {
+            alert("Registration Successful! Now Sign In.");
+        } else {
+            alert(data.message || "Registration fails!");
+        }
+    } catch (e) {
+        alert("Server Connection Failed!");
+    }
+}
 async function login() {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
@@ -112,12 +149,29 @@ async function deleteTask(id) {
     fetchTasks();
 }
 
+// function updateName() {
+//     const name = document.getElementById('new-name').value;
+//     if (name) {
+//         document.getElementById('user-display').innerText = name;
+//         alert("Display Name Updated!");
+//     }
+// }
+
 function updateName() {
-    const name = document.getElementById('new-name').value;
-    if (name) {
-        document.getElementById('user-display').innerText = name;
-        alert("Display Name Updated!");
+    const nameInput = document.getElementById('new-name');
+    const newName = nameInput.value.trim();
+    
+    if (newName === "") {
+        alert("Bhai, pehle naam toh dalo!");
+        return;
     }
+    
+    // Update UI
+    document.getElementById('user-display').innerText = newName;
+    alert("Display Name updated to: " + newName + " ✅");
+    
+    // Clear Input
+    nameInput.value = "";
 }
 
 function logout() { localStorage.removeItem("token"); location.reload(); }

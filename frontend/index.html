@@ -14,11 +14,11 @@
             <i data-lucide="shield-check" class="auth-logo"></i>
             <h1>TaskMaster <span>Pro</span></h1>
             <div class="form-wrapper">
-                <input type="email" id="email" placeholder="Email Address">
-                <input type="password" id="password" placeholder="Password">
+                <input type="email" id="email" placeholder="Email Address" required>
+                <input type="password" id="password" placeholder="Password" required>
                 <div class="auth-btns">
                     <button onclick="login()" class="btn-primary">Sign In</button>
-                    <button onclick="register()" class="btn-outline">Register</button>
+                    <button onclick="register()" class="btn-primary">Register</button>
                 </div>
             </div>
         </div>
@@ -60,14 +60,18 @@
                 <ul id="task-list" class="task-items"></ul>
             </div>
 
-            <div id="view-settings" class="tab-view" style="display: none;">
-                <h1>Settings</h1>
-                <div class="card">
-                    <label>Change Display Name</label>
-                    <input type="text" id="new-name" placeholder="Enter new name...">
-                    <button class="btn-primary" onclick="updateName()" style="margin-top: 15px;">Update</button>
-                </div>
-            </div>
+           <div id="view-settings" class="tab-view" style="display: none;">
+    <h1>Settings</h1>
+    <div class="card">
+        <h3>Update Profile</h3>
+        <p style="color: var(--text-muted); margin-bottom: 20px;">Change your display name below.</p>
+        
+        <div class="settings-row">
+            <input type="text" id="new-name" placeholder="Enter new name...">
+            <button class="btn-primary update-btn" onclick="updateName()">Update</button>
+        </div>
+    </div>
+</div>
         </main>
     </section>
 
